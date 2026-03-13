@@ -583,7 +583,65 @@
     .store-icon { font-size: 1.8rem; }
     .store-label { font-size: 0.65rem; color: #999; letter-spacing: 0.5px; }
     .store-name { font-size: 1rem; font-weight: 700; }
-
+    /* BEFORE AFTER IMAGE STYLING */
+    
+    .before-after-demo {
+      position: relative;
+      width: 100%;
+      height: 320px;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+    
+    .before-after-demo img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    /* BEFORE IMAGE */
+    .ba-left img {
+      z-index: 1;
+    }
+    
+    /* AFTER IMAGE */
+    .ba-right img {
+      z-index: 2;
+      clip-path: inset(0 0 0 50%);
+    }
+    
+    /* SLIDER LINE */
+    .ba-divider {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: #ff2d78;
+      z-index: 3;
+    }
+    
+    /* SLIDER HANDLE */
+    .ba-handle {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 36px;
+      height: 36px;
+      background: #ff2d78;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      cursor: ew-resize;
+      z-index: 4;
+      box-shadow: 0 0 20px rgba(255,45,120,0.5);
+    }
     /* ===== FOOTER ===== */
     footer {
       background: #060606; padding: 50px 5% 30px;
