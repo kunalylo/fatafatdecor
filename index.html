@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Fatafat Decor helps you preview celebration decor with AI and book fast room decoration services for birthdays, anniversaries, proposals, and more."
+  />
+  <meta name="theme-color" content="#0d0d0d" />
   <title>Fatafat Decor – Instant Décor. Beautiful Spaces. Effortless Celebrations.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -80,8 +85,13 @@
     .hamburger {
       display: none; flex-direction: column; gap: 5px;
       cursor: pointer; padding: 4px;
+      background: transparent; border: 0;
     }
     .hamburger span { width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s; }
+    .hamburger:focus-visible {
+      outline: 2px solid var(--pink);
+      outline-offset: 4px;
+    }
 
     /* ===== SECTIONS SHARED ===== */
     section { padding: 90px 5%; }
@@ -504,6 +514,7 @@
       flex-direction: column; gap: 6px;
       font-size: 0.7rem; font-weight: 700;
       letter-spacing: 1px; text-transform: uppercase;
+      overflow: hidden;
     }
     .tv-before {
       background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
@@ -513,6 +524,14 @@
       background: linear-gradient(135deg, rgba(255,45,120,0.15), rgba(201,168,76,0.1));
       color: var(--pink-light);
     }
+    .transform-shot {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+    .transform-shot-first-before { object-position: center 72%; }
+    .transform-shot-first-after { object-position: center 46%; }
     .tv-emoji { font-size: 2.2rem; }
     .tv-divider {
       position: absolute; left: 50%; top: 0; bottom: 0;
@@ -656,19 +675,6 @@
     }
     @keyframes fade-in { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: translateX(0); } }
 
-    /* ===== STICKY APP CTA BAR ===== */
-    .sticky-cta {
-      position: fixed; bottom: 0; left: 0; right: 0; z-index: 900;
-      background: rgba(13,13,13,0.95); backdrop-filter: blur(20px);
-      border-top: 1px solid rgba(255,45,120,0.2);
-      padding: 10px 5%; display: none;
-      align-items: center; justify-content: space-between; gap: 16px;
-    }
-    .sticky-cta.show { display: flex; }
-    .sticky-cta-text { font-size: 0.85rem; font-weight: 600; }
-    .sticky-cta-text span { color: var(--pink); }
-    .sticky-cta-btns { display: flex; gap: 10px; }
-
     /* ===== ANIMATIONS ===== */
     .fade-up {
       opacity: 0; transform: translateY(30px);
@@ -698,7 +704,19 @@
 
     @media (max-width: 768px) {
       section { padding: 60px 4%; }
-      .nav-links { display: none; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 64px;
+        right: 0;
+        left: 0;
+        flex-direction: column;
+        background: rgba(13,13,13,0.98);
+        padding: 20px 5%;
+        gap: 20px;
+        border-bottom: 1px solid rgba(255,45,120,0.15);
+      }
+      .nav-links.mobile-open { display: flex; }
       .hamburger { display: flex; }
       .features-grid { grid-template-columns: 1fr; }
       .occasions-grid { grid-template-columns: repeat(2, 1fr); }
@@ -720,18 +738,18 @@
 
   <!-- NAV -->
   <nav id="navbar">
-    <a class="nav-logo" href="#">
+    <a class="nav-logo" href="#hero" aria-label="Fatafat Decor home">
       <span class="nav-logo-text">FATAFAT DECOR</span>
     </a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="primary-navigation">
       <li><a href="#how-it-works">How It Works</a></li>
       <li><a href="#ai-section">Decor AI</a></li>
       <li><a href="#occasions">Occasions</a></li>
       <li><a href="https://fatafatdecor.ylo.co.in" class="nav-cta" target="_blank" rel="noopener">Book Now</a></li>
     </ul>
-    <div class="hamburger" id="hamburger" aria-label="Menu">
+    <button class="hamburger" id="hamburger" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-navigation">
       <span></span><span></span><span></span>
-    </div>
+    </button>
   </nav>
 
   <!-- HERO -->
@@ -788,12 +806,10 @@
             <div class="hero-visual-body">
               <div class="before-after-demo">
                 <div class="ba-side ba-left">
-                  <div class="room-icon">🪑</div>
-                  <div class="ba-text">Plain Room</div>
+                  <img src="image2.jpg" alt="Before: plain living room before decoration" style="width: 100%; height: 100%; object-fit: cover;" />
                 </div>
                 <div class="ba-side ba-right">
-                  <div class="room-icon">🎊</div>
-                  <div class="ba-text">AI Decorated</div>
+                  <img src="before2.png" alt="After: decorated living room preview created by Fatafat Decor AI" style="width: 100%; height: 100%; object-fit: cover;" />
                 </div>
                 <div class="ba-divider"></div>
                 <div class="ba-handle">
@@ -1074,12 +1090,10 @@
         <div class="transform-card fade-up">
           <div class="transform-visual">
             <div class="tv-before">
-              <span class="tv-emoji">🪑</span>
-              <span>Before</span>
+              <img class="transform-shot transform-shot-first-before" src="image1.jpeg" alt="Before: plain living room ready for birthday decor" loading="lazy" decoding="async" />
             </div>
             <div class="tv-after">
-              <span class="tv-emoji">🎂</span>
-              <span>After</span>
+              <img class="transform-shot transform-shot-first-after" src="before1.png" alt="After: elegant birthday balloon setup in the living room" loading="lazy" decoding="async" />
             </div>
             <div class="tv-divider"><div class="tv-arrow">→</div></div>
           </div>
@@ -1091,12 +1105,10 @@
         <div class="transform-card fade-up fade-up-delay-1">
           <div class="transform-visual">
             <div class="tv-before">
-              <span class="tv-emoji">🛏️</span>
-              <span>Before</span>
+              <img class="transform-shot" src="image5.jpeg" alt="Before: plain bedroom before romantic decoration" loading="lazy" decoding="async" />
             </div>
             <div class="tv-after">
-              <span class="tv-emoji">🌹</span>
-              <span>After</span>
+              <img class="transform-shot" src="befor5.png" alt="After: romantic candle and rose bedroom decoration" loading="lazy" decoding="async" />
             </div>
             <div class="tv-divider"><div class="tv-arrow">→</div></div>
           </div>
@@ -1108,12 +1120,10 @@
         <div class="transform-card fade-up fade-up-delay-2">
           <div class="transform-visual">
             <div class="tv-before">
-              <span class="tv-emoji">🍽️</span>
-              <span>Before</span>
+              <img class="transform-shot" src="image4.jpeg" alt="Before: plain dining area before anniversary setup" loading="lazy" decoding="async" />
             </div>
             <div class="tv-after">
-              <span class="tv-emoji">✨</span>
-              <span>After</span>
+              <img class="transform-shot" src="befor4.png" alt="After: luxury anniversary dining setup" loading="lazy" decoding="async" />
             </div>
             <div class="tv-divider"><div class="tv-arrow">→</div></div>
           </div>
@@ -1230,7 +1240,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2025 Fatafat Decor. All rights reserved.</span>
+      <span>&copy; <span id="current-year">2026</span> Fatafat Decor. All rights reserved.</span>
       <div class="footer-bottom-links">
         <a href="#">Privacy Policy</a>
         <a href="#">Terms of Service</a>
@@ -1267,23 +1277,38 @@
     // Hamburger menu
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.querySelector('.nav-links');
-    hamburger.addEventListener('click', () => {
-      const open = navLinks.style.display === 'flex';
-      navLinks.style.display = open ? 'none' : 'flex';
-      navLinks.style.flexDirection = 'column';
-      navLinks.style.position = 'absolute';
-      navLinks.style.top = '64px';
-      navLinks.style.right = '0';
-      navLinks.style.left = '0';
-      navLinks.style.background = 'rgba(13,13,13,0.98)';
-      navLinks.style.padding = '20px 5%';
-      navLinks.style.gap = '20px';
-      navLinks.style.borderBottom = '1px solid rgba(255,45,120,0.15)';
-    });
+    if (hamburger && navLinks) {
+      const closeMenu = () => {
+        navLinks.classList.remove('mobile-open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      };
 
-    // Sticky CTA (show after hero)
-    const herosection = document.getElementById('hero');
-    const stickyCta = document.querySelector('.sticky-cta');
+      hamburger.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('mobile-open');
+        hamburger.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      navLinks.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', closeMenu);
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+          closeMenu();
+        }
+      });
+
+      window.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          closeMenu();
+        }
+      });
+    }
+
+    const currentYear = document.getElementById('current-year');
+    if (currentYear) {
+      currentYear.textContent = new Date().getFullYear();
+    }
 
     // Interactive before/after demo
     const baHandle = document.querySelector('.ba-handle');
