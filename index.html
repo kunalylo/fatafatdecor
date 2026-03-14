@@ -58,11 +58,37 @@
     .nav-logo {
       display: flex; align-items: center; gap: 12px;
       text-decoration: none;
+      min-width: 0;
+    }
+    .brand-mark {
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; overflow: hidden;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(255,45,120,0.18), rgba(201,168,76,0.18));
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.28);
+    }
+    .brand-mark img {
+      width: 100%; height: 100%;
+      display: block; object-fit: contain;
+      filter: drop-shadow(0 8px 18px rgba(0,0,0,0.22));
+    }
+    .nav-brand-mark {
+      width: 52px; height: 52px; padding: 6px;
+    }
+    .nav-logo-copy {
+      display: flex; flex-direction: column; gap: 3px;
+      min-width: 0;
+    }
+    .nav-logo-kicker {
+      font-size: 0.62rem; font-weight: 600; letter-spacing: 1.6px;
+      text-transform: uppercase; color: var(--text-muted);
     }
     .nav-logo-text {
       font-size: 1.3rem; font-weight: 800; letter-spacing: 1px;
       background: linear-gradient(135deg, var(--pink), var(--gold));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      line-height: 1;
     }
     .nav-links {
       display: flex; align-items: center; gap: 28px;
@@ -200,6 +226,28 @@
     .hero-sub {
       font-size: 1rem; color: var(--text-muted); line-height: 1.75;
       margin-bottom: 36px; max-width: 480px;
+    }
+    .hero-info-strip {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px; margin-bottom: 32px; max-width: 560px;
+    }
+    .hero-info-item {
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+      backdrop-filter: blur(10px);
+    }
+    .hero-info-label {
+      display: block; margin-bottom: 6px;
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 1.4px;
+      text-transform: uppercase; color: var(--gold-light);
+    }
+    .hero-info-value {
+      display: block;
+      font-size: 0.9rem; font-weight: 700; color: #fff;
+      line-height: 1.4;
     }
     .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 44px; }
     .hero-stats {
@@ -612,14 +660,37 @@
       display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
       gap: 40px; margin-bottom: 40px;
     }
-    .footer-brand {}
+    .footer-brand {
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .footer-brand-header {
+      display: flex; align-items: center; gap: 14px;
+    }
+    .footer-brand-mark {
+      width: 68px; height: 68px; padding: 8px;
+      border-radius: 22px;
+    }
+    .footer-brand-copy {
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .footer-brand-note {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 1.8px;
+      text-transform: uppercase; color: var(--gold-light);
+    }
     .footer-logo-text {
       font-size: 1.4rem; font-weight: 900; letter-spacing: 1px;
       background: linear-gradient(135deg, var(--pink), var(--gold));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      margin-bottom: 12px;
+      margin-bottom: 0;
     }
-    .footer-tagline { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; max-width: 220px; }
+    .footer-tagline { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; max-width: 320px; }
+    .footer-info-list {
+      display: grid; gap: 10px;
+      max-width: 340px;
+    }
+    .footer-info-item {
+      font-size: 0.8rem; line-height: 1.55; color: #d5d5d5;
+    }
     .footer-social { display: flex; gap: 10px; margin-top: 20px; }
     .social-btn {
       width: 36px; height: 36px; border-radius: 10px;
@@ -704,6 +775,8 @@
 
     @media (max-width: 768px) {
       section { padding: 60px 4%; }
+      .nav-brand-mark { width: 46px; height: 46px; }
+      .nav-logo-kicker { display: none; }
       .nav-links {
         display: none;
         position: absolute;
@@ -722,12 +795,16 @@
       .occasions-grid { grid-template-columns: repeat(2, 1fr); }
       .transforms-grid { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr; }
+      .footer-brand-header { align-items: flex-start; }
       .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .hero-info-strip { grid-template-columns: 1fr; }
       .hero-stats { gap: 20px; flex-wrap: wrap; }
       .whatsapp-float .wa-tooltip { display: none; }
     }
 
     @media (max-width: 480px) {
+      .nav-brand-mark { width: 42px; height: 42px; padding: 5px; }
+      .nav-logo-text { font-size: 1rem; }
       .occasions-grid { grid-template-columns: 1fr 1fr; }
       .hero-actions { flex-direction: column; }
       .hero-actions .btn { width: 100%; justify-content: center; }
@@ -739,7 +816,13 @@
   <!-- NAV -->
   <nav id="navbar">
     <a class="nav-logo" href="#hero" aria-label="Fatafat Decor home">
-      <span class="nav-logo-text">FATAFAT DECOR</span>
+      <span class="brand-mark nav-brand-mark" aria-hidden="true">
+        <img src="logo.png" alt="" loading="eager" fetchpriority="high" decoding="async" />
+      </span>
+      <span class="nav-logo-copy">
+        <span class="nav-logo-text">FATAFAT DECOR</span>
+        <span class="nav-logo-kicker">AI previews and fast setup</span>
+      </span>
     </a>
     <ul class="nav-links" id="primary-navigation">
       <li><a href="#how-it-works">How It Works</a></li>
@@ -770,6 +853,20 @@
         <p class="hero-sub">
           Choose a decor style, preview it with our <strong>Instant Decor AI</strong>, and our expert decorators arrive quickly to bring it to life. From birthdays to surprise celebrations — <strong>From Your Phone to Your Room.</strong>
         </p>
+        <div class="hero-info-strip">
+          <div class="hero-info-item">
+            <span class="hero-info-label">Service Area</span>
+            <span class="hero-info-value">Ranchi and nearby locations</span>
+          </div>
+          <div class="hero-info-item">
+            <span class="hero-info-label">Best For</span>
+            <span class="hero-info-value">Home, hotel, and surprise room setups</span>
+          </div>
+          <div class="hero-info-item">
+            <span class="hero-info-label">Quick Booking</span>
+            <span class="hero-info-value">Fast support on WhatsApp and Decor AI</span>
+          </div>
+        </div>
         <div class="hero-actions">
           <a href="https://fatafatdecor.ylo.co.in" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
             ✨ Try Fatafat Decor AI
@@ -1200,8 +1297,21 @@
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
-        <div class="footer-logo-text">FATAFAT DECOR</div>
+        <div class="footer-brand-header">
+          <span class="brand-mark footer-brand-mark">
+            <img src="logo.png" alt="Fatafat Decor logo" loading="lazy" decoding="async" />
+          </span>
+          <div class="footer-brand-copy">
+            <div class="footer-brand-note">Celebrate Faster</div>
+            <div class="footer-logo-text">FATAFAT DECOR</div>
+          </div>
+        </div>
         <p class="footer-tagline">FatafatDecor, YLO Workspace, 101, 1st floor, Surendra Singh compound Anantham Apartment, Kokar Chowk, Kokar, Ranchi, Jharkhand 834001.</p>
+        <div class="footer-info-list">
+          <div class="footer-info-item">Same-day room decoration service for birthdays, anniversaries, proposals, and surprise celebrations.</div>
+          <div class="footer-info-item">Serving Ranchi with quick booking support and AI-based decor previews before setup.</div>
+          <div class="footer-info-item">WhatsApp booking help: +91 62047 11205</div>
+        </div>
         <br>
         <p class="footer-tagline">Instant décor. Beautiful spaces. Effortless celebrations.</p>
         <div class="footer-social">
