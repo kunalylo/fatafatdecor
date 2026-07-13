@@ -41,6 +41,22 @@
     "image": "https://fatafatdecor.com/logo-mark.png",
     "description": "Same-day room decoration service in Ranchi for birthdays, anniversaries, proposals and surprise celebrations, with AI decor previews before setup.",
     "telephone": "+91-62047-11205",
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "telephone": "+91-62047-11205",
+        "contactType": "customer service",
+        "areaServed": "IN",
+        "availableLanguage": ["en", "hi"]
+      },
+      {
+        "@type": "ContactPoint",
+        "telephone": "+91-80022-66606",
+        "contactType": "customer service",
+        "areaServed": "IN",
+        "availableLanguage": ["en", "hi"]
+      }
+    ],
     "parentOrganization": {
       "@type": "Organization",
       "name": "Your Local Online"
@@ -771,6 +787,20 @@
     .footer-info-item {
       font-size: 0.8rem; line-height: 1.55; color: #d5d5d5;
     }
+    .footer-contact { display: grid; gap: 7px; }
+    .footer-contact-label { color: var(--text-muted); }
+    .footer-contact-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .footer-contact-row a.footer-tel {
+      color: #fff; text-decoration: none; font-weight: 600; letter-spacing: 0.3px;
+    }
+    .footer-contact-row a.footer-tel:hover { color: var(--pink); }
+    .footer-contact-row .footer-wa {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 0.72rem; font-weight: 700; color: #25d366; text-decoration: none;
+      border: 1px solid rgba(37,211,102,0.4); border-radius: 50px; padding: 3px 11px;
+      transition: background 0.2s;
+    }
+    .footer-contact-row .footer-wa:hover { background: rgba(37,211,102,0.14); }
     .footer-social { display: flex; gap: 10px; margin-top: 20px; }
     .social-btn {
       width: 36px; height: 36px; border-radius: 10px;
@@ -1412,7 +1442,17 @@
         <div class="footer-info-list">
           <div class="footer-info-item">Same-day room decoration service for birthdays, anniversaries, proposals, and surprise celebrations.</div>
           <div class="footer-info-item">Serving Ranchi with quick booking support and AI-based decor previews before setup.</div>
-          <div class="footer-info-item">WhatsApp booking help: +91 62047 11205</div>
+          <div class="footer-info-item footer-contact">
+            <span class="footer-contact-label">Call or WhatsApp us for bookings:</span>
+            <span class="footer-contact-row">
+              <a class="footer-tel" href="tel:+916204711205">+91 62047 11205</a>
+              <a class="footer-wa" href="https://wa.me/916204711205" target="_blank" rel="noopener" aria-label="Chat on WhatsApp with +91 62047 11205">💬 WhatsApp</a>
+            </span>
+            <span class="footer-contact-row">
+              <a class="footer-tel" href="tel:+918002266606">+91 80022 66606</a>
+              <a class="footer-wa" href="https://wa.me/918002266606" target="_blank" rel="noopener" aria-label="Chat on WhatsApp with +91 80022 66606">💬 WhatsApp</a>
+            </span>
+          </div>
         </div>
         <br>
         <p class="footer-tagline">Instant décor. Beautiful spaces. Effortless celebrations.</p>
