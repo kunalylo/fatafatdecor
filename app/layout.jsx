@@ -10,9 +10,26 @@ const poppins = Poppins({
 
 export const metadata = {
   metadataBase: new URL('https://fatafatdecor.com'),
-  title: 'Fatafat Decor – Instant Décor. Beautiful Spaces. Effortless Celebrations.',
+  title: {
+    default: 'Fatafat Decor – AI Party & Room Decoration in Ranchi',
+    template: '%s · Fatafat Decor',
+  },
   description:
-    'Fatafat Decor helps you preview celebration decor with AI and book fast room decoration services for birthdays, anniversaries, proposals, and more.',
+    'Same-day party & room decoration in Ranchi for birthdays, anniversaries, proposals & surprises. Preview your décor with AI, then book a decorator in minutes.',
+  applicationName: 'Fatafat Decor',
+  keywords: [
+    'room decoration Ranchi',
+    'birthday decoration Ranchi',
+    'anniversary decoration',
+    'balloon decoration',
+    'surprise room decor',
+    'AI decoration preview',
+    'party decorator near me',
+    'Fatafat Decor',
+  ],
+  authors: [{ name: 'Fatafat Decor' }],
+  creator: 'Fatafat Decor',
+  publisher: 'Fatafat Decor',
   alternates: { canonical: '/' },
   icons: {
     icon: [
@@ -25,17 +42,26 @@ export const metadata = {
   openGraph: {
     type: 'website',
     siteName: 'Fatafat Decor',
-    title: 'Fatafat Decor – Instant Décor. Beautiful Spaces. Effortless Celebrations.',
+    title: 'Fatafat Decor – AI Party & Room Decoration in Ranchi',
     description:
-      'Preview celebration decor with AI and book fast room decoration services in Ranchi for birthdays, anniversaries, proposals, and more.',
-    images: ['/logo-mark.png'],
+      'Preview your celebration décor with AI, then book a decorator for same-day setup in Ranchi — birthdays, anniversaries, proposals & surprises.',
+    images: [
+      { url: '/image2.jpg', width: 1200, height: 630, alt: 'Fatafat Decor room decoration' },
+    ],
     url: '/',
+    locale: 'en_IN',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Fatafat Decor – Instant Décor. Beautiful Spaces.',
-    description: 'Preview celebration decor with AI and book fast room decoration in Ranchi.',
-    images: ['/logo-mark.png'],
+    title: 'Fatafat Decor – AI Party & Room Decoration in Ranchi',
+    description:
+      'Preview your décor with AI, then book a decorator for same-day setup in Ranchi.',
+    images: ['/image2.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
   },
 };
 
@@ -43,46 +69,83 @@ export const viewport = {
   themeColor: '#0d0d0d',
 };
 
-const organizationSchema = {
+// Postal address reused across the Organization + LocalBusiness nodes.
+const postalAddress = {
+  '@type': 'PostalAddress',
+  streetAddress:
+    'YLO Workspace, 101, 1st floor, Surendra Singh compound, Anantham Apartment, Kokar Chowk, Kokar',
+  addressLocality: 'Ranchi',
+  addressRegion: 'Jharkhand',
+  postalCode: '834001',
+  addressCountry: 'IN',
+};
+
+// Official profiles Google can associate with the brand (helps the knowledge panel).
+const sameAs = [
+  'https://www.instagram.com/fatafatdecor',
+  'https://apps.apple.com/us/app/fatafatdecor/id6763261185',
+  'https://play.google.com/store/apps/details?id=in.co.ylo.fatafatdecor.twa',
+];
+
+// Single @graph so Google reads one connected entity (Organization ↔ WebSite ↔ LocalBusiness).
+const structuredData = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'Fatafat Decor',
-  legalName: 'Fatafat Decor — A unit of Your Local Online',
-  url: 'https://fatafatdecor.com/',
-  logo: 'https://fatafatdecor.com/logo-mark.png',
-  image: 'https://fatafatdecor.com/logo-mark.png',
-  description:
-    'Same-day room decoration service in Ranchi for birthdays, anniversaries, proposals and surprise celebrations, with AI decor previews before setup.',
-  telephone: '+91-62047-11205',
-  contactPoint: [
+  '@graph': [
     {
-      '@type': 'ContactPoint',
+      '@type': 'Organization',
+      '@id': 'https://fatafatdecor.com/#organization',
+      name: 'Fatafat Decor',
+      legalName: 'Fatafat Decor — A unit of Your Local Online',
+      url: 'https://fatafatdecor.com/',
+      logo: 'https://fatafatdecor.com/logo-mark.png',
+      image: 'https://fatafatdecor.com/logo-mark.png',
+      description:
+        'Same-day room decoration service in Ranchi for birthdays, anniversaries, proposals and surprise celebrations, with AI decor previews before setup.',
       telephone: '+91-62047-11205',
-      contactType: 'customer service',
-      areaServed: 'IN',
-      availableLanguage: ['en', 'hi'],
+      contactPoint: [
+        {
+          '@type': 'ContactPoint',
+          telephone: '+91-62047-11205',
+          contactType: 'customer service',
+          areaServed: 'IN',
+          availableLanguage: ['en', 'hi'],
+        },
+        {
+          '@type': 'ContactPoint',
+          telephone: '+91-80022-66606',
+          contactType: 'customer service',
+          areaServed: 'IN',
+          availableLanguage: ['en', 'hi'],
+        },
+      ],
+      parentOrganization: { '@type': 'Organization', name: 'Your Local Online' },
+      address: postalAddress,
+      sameAs,
     },
     {
-      '@type': 'ContactPoint',
-      telephone: '+91-80022-66606',
-      contactType: 'customer service',
-      areaServed: 'IN',
-      availableLanguage: ['en', 'hi'],
+      '@type': 'WebSite',
+      '@id': 'https://fatafatdecor.com/#website',
+      url: 'https://fatafatdecor.com/',
+      name: 'Fatafat Decor',
+      description:
+        'Preview celebration decor with AI and book fast room decoration services in Ranchi.',
+      publisher: { '@id': 'https://fatafatdecor.com/#organization' },
+      inLanguage: 'en-IN',
+    },
+    {
+      '@type': 'LocalBusiness',
+      '@id': 'https://fatafatdecor.com/#business',
+      name: 'Fatafat Decor',
+      image: 'https://fatafatdecor.com/logo-mark.png',
+      url: 'https://fatafatdecor.com/',
+      telephone: '+91-62047-11205',
+      priceRange: '₹₹',
+      parentOrganization: { '@id': 'https://fatafatdecor.com/#organization' },
+      address: postalAddress,
+      areaServed: { '@type': 'City', name: 'Ranchi' },
+      sameAs,
     },
   ],
-  parentOrganization: {
-    '@type': 'Organization',
-    name: 'Your Local Online',
-  },
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress:
-      'YLO Workspace, 101, 1st floor, Surendra Singh compound, Anantham Apartment, Kokar Chowk, Kokar',
-    addressLocality: 'Ranchi',
-    addressRegion: 'Jharkhand',
-    postalCode: '834001',
-    addressCountry: 'IN',
-  },
 };
 
 export default function RootLayout({ children }) {
@@ -91,7 +154,7 @@ export default function RootLayout({ children }) {
       <body>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
         {children}
       </body>
